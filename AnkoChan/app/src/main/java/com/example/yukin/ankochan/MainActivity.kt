@@ -1,14 +1,14 @@
 package com.example.yukin.ankochan
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import android.widget.LinearLayout
 import myLikeTweetView
 import org.jetbrains.anko.*
 import java.util.regex.Pattern
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),AnkoLogger {
 
     val ui: MainActivityUI by lazy {
         MainActivityUI().apply {
@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
         ui.doAsync {
             Thread.sleep(500)
             activityUiThreadWithContext {
-                if (checkCredentials(text)) toast("Login")
-                else toast("error")
+if (checkCredentials(text)) debug("login success")
+else error("login error")
             }
         }
     }
@@ -31,6 +31,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MainActivityUI().setContentView(this)
+        alert {
+            customView {
+                editText {
+                    hint = "こうなったら逃げられまい"
+                }
+            }
+            yesButton {}
+            noButton {}
+        }.show()
     }
 
     companion object {

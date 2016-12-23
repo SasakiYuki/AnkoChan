@@ -4,6 +4,7 @@ import android.view.*
 import android.widget.*
 import org.jetbrains.anko.*
 import android.util.AttributeSet
+import com.example.yukin.ankochan.MSListActivity
 import org.jetbrains.anko.custom.ankoView
 
 class LikeTweetView : LinearLayout {
@@ -41,6 +42,9 @@ class LikeTweetView : LinearLayout {
             textView(text = "今日も頑張って仕事をしよう。週末はおいしいものでも食べたいなぁ。") {
                 padding = dip(4)
             }.lparams(width = matchParent, height = wrapContent)
+        }
+        onClick {
+            startActivity<MSListActivity>()
         }
 
     }
